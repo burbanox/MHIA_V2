@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plataforma Psicólogos</title>
+    <link rel="stylesheet" href="static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Plataforma para Psicólogos</h1>
+        
+        <div id="login">
+            <h2>Iniciar Sesión</h2>
+            <input type="text" id="username" placeholder="Usuario">
+            <input type="password" id="password" placeholder="Contraseña">
+            <button onclick="login()">Ingresar</button>
+        </div>
+
+        <div id="register" style="display: none;">
+            <h2>Registro</h2>
+            <input type="text" id="reg_username" placeholder="Usuario">
+            <input type="password" id="reg_password" placeholder="Contraseña">
+            <button onclick="register()">Registrar</button>
+        </div>
+
+        <div id="dashboard" style="display: none;">
+            <h2>Pacientes</h2>
+            <ul id="patient-list"></ul>
+            <h3>Subir Sesión</h3>
+            <input type="file" id="sessionFile">
+            <button onclick="uploadSession()">Subir</button>
+        </div>
+    </div>
+
+    <script>
+        async function login() {
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+            
+            const response = await fetch("/token", {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: `username=${username}&password=${password}`
+            });
+            
+            if (response.ok) {
+                const data = await response.json();
+                localStorage.setItem("token", data.access_token);
+                document.getElementById("login").style.display = "none";
+                document.getElementById("dashboard").style.display = "block";
+                loadPatients();
+            } else {
+                alert("Usuario o contraseña incorrectos");
+            }
+        }
+
+        async function register() {
+            const username = document.getElementById("reg_username").value;
+            const password = document.getElementById("reg_password").value;
+            
+            const response = await fetch("/register", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ username, password, role: "psicologo" })
+            });
+            
+            if (response.ok) {
+                alert("Usuario registrado correctamente");
+            } else {
+                alert("Error al registrar usuario");
+            }
+        }
+
+        async function loadPatients() {
+            const token = localStorage.getItem("token");
+            const response = await fetch("/patients", {
+                headers: { "Authorization": `Bearer ${token}` }
+            });
+            
+            if (response.ok) {
+                const patients = await response.json();
+                const list = document.getElementById("patient-list");
+                list.innerHTML = "";
+                patients.forEach(patient => {
+                    const li = document.createElement("li");
+                    li.textContent = patient.name;
+                    list.appendChild(li);
+                });
+            }
+        }
+
+        async function uploadSession() {
+            const fileInput = document.getElementById("sessionFile");
+            const file = fileInput.files[0];
+            const token = localStorage.getItem("token");
+            
+            if (!file) {
+                alert("Seleccione un archivo");
+                return;
+            }
+            
+            const formData = new FormData();
+            formData.append("file", file);
+            
+            const response = await fetch("/upload_session", {
+                method: "POST",
+                headers: { "Authorization": `Bearer ${token}` },
+                body: formData
+            });
+            
+            if (response.ok) {
+                alert("Sesión subida correctamente");
+            } else {
+                alert("Error al subir sesión");
+            }
+        }
+    </script>
+</body>
+</html>

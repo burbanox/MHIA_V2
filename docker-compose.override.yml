@@ -1,0 +1,16 @@
+version: "3.8"
+
+services:
+  app:
+    environment:
+      USE_WHISPER: ${USE_WHISPER:-false}  # Usar Whisper solo si la variable está definida
+    volumes:
+      - .:/code  # Montar el código de la aplicación para desarrollo
+    command: >
+      bash -c "
+        if [ \"$USE_WHISPER\" = \"true\" ]; then
+          echo 'Whisper está habilitado. Instalando dependencias...';
+          apt-get update && apt-get install -y ffmpeg && pip install openai-whisper;
+        fi;
+        uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+      "

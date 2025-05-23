@@ -1,0 +1,37 @@
+# 📝 Ignorar archivos de caché y entornos virtuales
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+venv/
+.env
+.env.local
+
+# 🚀 Evitar archivos de configuración locales
+*.log
+*.sqlite3
+*.db
+*.pid
+
+# 🔥 Ignorar dependencias descargadas (se instalarán en el contenedor)
+pip-wheel-metadata/
+pip-log.txt
+*.egg-info/
+*.dist-info/
+
+# 🖥️ Evitar archivos del sistema operativo y de editores
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+
+# 🐳 Evitar imágenes y contenedores no deseados
+docker-compose.override.yml
+.dockerignore
+
+# 📁 Evitar datos persistentes de PostgreSQL (usamos volúmenes)
+postgres_data/
+
+# 🎤 Evitar modelos de Whisper en la imagen (los usaremos con volúmenes)
+~/.cache/whisper/
