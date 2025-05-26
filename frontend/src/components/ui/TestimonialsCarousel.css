@@ -1,0 +1,32 @@
+.testimonials-carousel-container {
+    position: relative; /* Para que las flechas se posicionen relativamente a este contenedor */
+  }
+  
+  .carousel-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    font-size: 2em;
+    color: black;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1; /* Asegura que las flechas estén por encima del contenido */
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+  }
+  
+  .carousel-arrow:hover {
+    opacity: 1;
+  }
+  
+  .carousel-arrow-left {
+    left: 10px;
+  }
+  
+  .carousel-arrow-right {
+    right: 10px;
+  }
+  
+  /* Opcional: Ajusta la posición de las flechas si el diseño lo requiere */

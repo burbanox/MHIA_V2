@@ -14,6 +14,8 @@ class Patient(Base):
     tel : Mapped[str] = mapped_column()
     age : Mapped[int] = mapped_column()
     gender : Mapped[str] = mapped_column()
+    address : Mapped[str] = mapped_column()
+    city : Mapped[str] = mapped_column()
 
     psychologist_id: Mapped[str] = mapped_column(ForeignKey("users.document_id"))
     #psychologist: Mapped["User"] = relationship(back_populates="patients")

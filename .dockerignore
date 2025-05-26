@@ -35,3 +35,6 @@ postgres_data/
 
 # 🎤 Evitar modelos de Whisper en la imagen (los usaremos con volúmenes)
 ~/.cache/whisper/
+
+# Ignorar directorios específicos de Node.js
+frontend/node_modules
