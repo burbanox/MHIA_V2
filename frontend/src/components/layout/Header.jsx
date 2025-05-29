@@ -1,9 +1,14 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 function Header() {
   const navigate = useNavigate();
+  const location = useLocation(); // Add this
   const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem("authToken"));
+
+  useEffect(() => {
+    setIsLoggedIn(!!localStorage.getItem("authToken"));
+  }, [location]); // Update on route change
 
   useEffect(() => {
     const checkAuthStatus = () => {
