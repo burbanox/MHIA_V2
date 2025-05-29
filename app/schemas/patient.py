@@ -8,7 +8,9 @@ class PatientBase(BaseModel):
     name: str
     tel: str
     age: int
-    gender : str
+    gender: str
+    address: str  # <-- Añadido como requerido
+    city: str     # <-- Añadido como requerido
 
 # Crear paciente (POST)
 class PatientCreate(PatientBase):
