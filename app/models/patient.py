@@ -3,6 +3,7 @@ from sqlalchemy.orm import relationship
 from app.database import Base
 from sqlalchemy.orm import Mapped, mapped_column
 from typing import List
+from .session import Session
 
 
 class Patient(Base):
@@ -20,4 +21,7 @@ class Patient(Base):
     psychologist_id: Mapped[str] = mapped_column(ForeignKey("users.document_id"))
     #psychologist: Mapped["User"] = relationship(back_populates="patients")
 
-    sessions : Mapped[List["Session"]] = relationship(back_populates="patients")
+    sessions : Mapped[List["Session"]] = relationship(
+        back_populates="patients",
+        cascade="all, delete-orphan"
+    )

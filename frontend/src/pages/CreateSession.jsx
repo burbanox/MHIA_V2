@@ -167,6 +167,12 @@ function CreateSession() {
       return;
     }
 
+    if (!patientDocumentId) {
+      setError('ID de paciente no proporcionado. No se puede crear la sesión.');
+      setLoading(false);
+      return;
+    }
+
     try {
       // --- Lógica para "subir" el archivo/blob y obtener la URL ---
       // ESTE ES EL PUNTO CLAVE PARA INTEGRAR CON TU BACKEND DE SUBIDA DE ARCHIVOS
@@ -202,6 +208,7 @@ function CreateSession() {
       // Actualizar sessionData con la URL final antes de enviar al backend
       const dataToSend = {
         ...sessionData,
+        patient_id: patientDocumentId, // Asegura que siempre se envía el ID correcto
         audio_url: finalAudioUrl,
         // analysis ya no se envía
       };

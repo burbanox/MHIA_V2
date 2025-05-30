@@ -1,0 +1,134 @@
+/* src/assets/css/EditPatient.css */
+
+.edit-patient-container {
+    max-width: 700px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+}
+
+.edit-patient-container h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 30px;
+    font-size: 2em;
+}
+
+.edit-patient-container.loading,
+.edit-patient-container.error-message {
+    text-align: center;
+    padding: 50px;
+    font-size: 1.2em;
+    color: #666;
+}
+
+.edit-patient-container.error-message {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.edit-patient-form .form-group {
+    margin-bottom: 18px;
+}
+
+.edit-patient-form label {
+    display: block;
+    margin-bottom: 6px;
+    color: #555;
+    font-weight: bold;
+}
+
+.edit-patient-form input[type="text"],
+.edit-patient-form input[type="email"],
+.edit-patient-form input[type="tel"],
+.edit-patient-form input[type="date"],
+.edit-patient-form input[type="number"],
+.edit-patient-form select {
+    width: calc(100% - 20px); /* 100% menos el padding */
+    padding: 10px 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1em;
+    box-sizing: border-box; /* Incluye padding y borde en el ancho total */
+}
+
+.edit-patient-form input:focus,
+.edit-patient-form select:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+}
+
+/* Estilo para el campo de ID deshabilitado */
+.edit-patient-form input[disabled] {
+    background-color: #e9ecef;
+    color: #6c757d;
+    cursor: not-allowed;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end; /* Alinea los botones a la derecha */
+    gap: 15px; /* Espacio entre los botones */
+    margin-top: 30px;
+}
+
+.submit-button,
+.cancel-button {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.submit-button {
+    background-color: #28a745; /* Verde para actualizar */
+    color: white;
+}
+
+.submit-button:hover {
+    background-color: #218838;
+    transform: translateY(-2px);
+}
+
+.submit-button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+.cancel-button {
+    background-color: #6c757d; /* Gris para cancelar */
+    color: white;
+}
+
+.cancel-button:hover {
+    background-color: #5a6268;
+    transform: translateY(-2px);
+}
+
+.error-message {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.success-message {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    text-align: center;
+}

@@ -11,6 +11,7 @@ import PatientSessions from "./pages/PatientSessions.jsx"; // <--- CAMBIADO
 import CreatePatient from "./pages/CreatePatient.jsx";
 import CreateSession from "./pages/CreateSession.jsx";
 import Session from "./pages/Session.jsx";
+import EditPatient from "./pages/EditPatient.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -25,6 +26,7 @@ createRoot(document.getElementById("root")).render(
         <Route path="/create-patient" element={<CreatePatient />} />
         <Route path="/create-session/:patientDocumentId" element={<CreateSession />} />
         <Route path="/session/:sessionId" element={<Session />} />
+        <Route path="/edit-patient/:patientId" element={<EditPatient />} />
         <Route path="*" element={<div>Página no encontrada</div>} />
       </Routes>
       <Footer />
